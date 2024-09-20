@@ -17,6 +17,7 @@
             
             <p class="body-m color-gray text-center mt-2">Não possui uma conta? <b class="color-purple cursor-pointer">Crie uma conta.</b></p>
         </ModalComponent>
+        <LoadingComponent v-if="isLoading"/>
     </div>
 </template>
 
@@ -30,7 +31,8 @@ export default {
         return {
             email: '',
             password: '',
-            alertMessage: ''
+            alertMessage: '',
+            isLoading: false
         }
     },
     methods: {
@@ -39,14 +41,15 @@ export default {
                 this.alertMessage = 'Preencha os campos'
                 return
             }
+            this.isLoading = true
             this.userStore.request.login(this.email, this.password).then(resp => {
-
+                this.userStore.request.token = resp.data.token
+                this.isLoading = false
             }).catch(error => {
-                console.log(error.response);
                 if (error.response.status == 403 && error.response.data.error == 'Wrong credentials'){
-                    this.alertMessage = 'Incorreto'
-
+                    this.alertMessage = 'Incorreto' 
                 }
+                this.isLoading = false
             })
         }
     },
