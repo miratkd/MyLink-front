@@ -15,7 +15,7 @@
                 <ButtonComponent text="Login" class="w-full mt-10"/>
             </form>
             
-            <p class="body-m color-gray text-center mt-2">Não possui uma conta? <b class="color-purple cursor-pointer">Crie uma conta.</b></p>
+            <p class="body-m color-gray text-center mt-2">Não possui uma conta? <NuxtLink to="/create-account" class="color-purple cursor-pointer">Crie uma conta.</NuxtLink ></p>
         </ModalComponent>
         <LoadingComponent v-if="isLoading"/>
     </div>
@@ -44,7 +44,7 @@ export default {
             this.isLoading = true
             this.userStore.request.login(this.email, this.password).then(resp => {
                 this.userStore.request.token = resp.data.token
-                this.isLoading = false
+                navigateTo('/dashboard')
             }).catch(error => {
                 if (error.response.status == 403 && error.response.data.error == 'Wrong credentials'){
                     this.alertMessage = 'Incorreto' 
