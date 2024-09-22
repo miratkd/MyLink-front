@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>create account</h1>
+        <h1 data-test="create-account-title">create account</h1>
     </div>
 </template>
 

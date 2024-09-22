@@ -5,17 +5,17 @@
             My-Link
         </p>
         <ModalComponent class="w-1/4">
-            <h1 class="heading-m">Login</h1>
+            <h1 data-test="login-title" class="heading-m">Login</h1>
             <p class="body-m color-gray">Insira suas informações de acesso</p>
             <form @submit.prevent="login()">
-                <p :class="{'text-red-500': alertMessage}" class="body-s color-dark-gray mt-4">Endereço de email</p>
-                <InputComponent @click="alertMessage=''" :alert="alertMessage" icon="email" v-model="email" placeholder="e.g. alex@email.com"/>
-                <p :class="{'text-red-500': alertMessage}" class="body-s color-dark-gray mt-4">Senha</p>
-                <InputComponent @click="alertMessage=''" :alert="alertMessage" icon="password" v-model="password" :isPassword="true" placeholder="Insira sua senha"/>
-                <ButtonComponent text="Login" class="w-full mt-10"/>
+                <p data-test="email-label" :class="{'text-red-500': alertMessage}" class="body-s color-dark-gray mt-4">Endereço de email</p>
+                <InputComponent data-test="email-input" @click="alertMessage=''" :alert="alertMessage" icon="email" v-model="email" placeholder="e.g. alex@email.com"/>
+                <p data-test="password-label" :class="{'text-red-500': alertMessage}" class="body-s color-dark-gray mt-4">Senha</p>
+                <InputComponent data-test="password-input" @click="alertMessage=''" :alert="alertMessage" icon="password" v-model="password" :isPassword="true" placeholder="Insira sua senha"/>
+                <ButtonComponent data-test="login-button" text="Login" class="w-full mt-10"/>
             </form>
             
-            <p class="body-m color-gray text-center mt-2">Não possui uma conta? <NuxtLink to="/create-account" class="color-purple cursor-pointer">Crie uma conta.</NuxtLink ></p>
+            <p class="body-m color-gray text-center mt-2">Não possui uma conta? <NuxtLink to="/create-account" data-test="create-account-button" class="color-purple cursor-pointer">Crie uma conta.</NuxtLink ></p>
         </ModalComponent>
         <LoadingComponent v-if="isLoading"/>
     </div>
