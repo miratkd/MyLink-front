@@ -5,7 +5,9 @@ export const useUserStore = defineStore({
     id: 'user',
     state: () => ({
         token: 'asdasdawdasdawd',
-        request: new RequestService()
+        request: new RequestService(),
+        savedEmail: '',
+        savedPassword: ''
     }),
     actions: {
         setToken(newToken) {

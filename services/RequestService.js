@@ -8,9 +8,14 @@ export default class RequestService {
     }
 
     login(email, password) {
-        return axios.post(this.url + 'login', {
-            email: email,
-            password: password
+        
+    }
+
+    createAccount(email, name, password) {
+        return axios.post(this.url + 'users', {
+            email,
+            password,
+            name
         })
     }
 }

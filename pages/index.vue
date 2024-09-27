@@ -1,9 +1,6 @@
 <template>
     <div class="flex flex-col justify-center items-center w-screen h-screen">
-        <p class="heading-m flex gap-2 mb-8">
-            <img class="w-15" src="~/assets/logo-devlinks-small.svg" alt="">
-            My-Link
-        </p>
+        <PageHeader/>
         <ModalComponent class="w-1/4">
             <h1 data-test="login-title" class="heading-m">Login</h1>
             <p class="body-m color-gray">Insira suas informações de acesso</p>
@@ -34,6 +31,10 @@ export default {
             alertMessage: '',
             isLoading: false
         }
+    },
+    beforeMount () {
+        if (this.userStore.savedEmail) this.email = this.userStore.savedEmail
+        if (this.userStore.savedPassword) this.password = this.userStore.savedPassword
     },
     methods: {
         login() {
