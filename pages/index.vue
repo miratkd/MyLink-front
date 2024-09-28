@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col justify-center items-center w-screen h-dvh">
         <PageHeader/>
-        <ModalComponent class="w-10/12 md:w-6/12 lg:w-2/5">
+        <ModalComponent class="w-10/12 md:w-6/12 lg:w-1/4">
             <h1 data-test="login-title" class="heading-m">Login</h1>
             <p class="body-m color-gray">Insira suas informações de acesso</p>
             <form @submit.prevent="login()">

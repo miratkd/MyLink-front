@@ -1,7 +1,7 @@
 <template>
-    <div class="flex flex-col justify-center items-center w-screen h-screen">
+    <div class="flex flex-col justify-center items-center w-screen h-dvh">
         <PageHeader />
-        <ModalComponent class="w-1/4">
+        <ModalComponent class="w-10/12 md:w-6/12 lg:w-1/4">
             <h1 data-test="create-account-title" class="heading-m">Criar conta</h1>
             <p class="body-m color-gray">Vamos te preparar para criar os seus links</p>
             <form @submit.prevent="createAccount()">
