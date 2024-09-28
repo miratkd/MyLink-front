@@ -51,6 +51,16 @@ describe('Main spec', () => {
     cy.get('@input-alert').first().should('have.text', 'Incorreto')
     cy.get('@input-alert').last().should('have.text', 'Incorreto')
 
+    // test create account link
+    cy.visit('')
+    cy.get('[id="nuxt-devtools-anchor"]')
+
+
+    cy.get('@login-title').should('be.visible')
+    cy.get('[data-test="create-account-button"]').click()
+    cy.get('@login-title').should('not.exist')
+    cy.get('[data-test="create-account-title"]').should('exist')
+    
     // test right credentials
     cy.visit('')
     cy.get('[id="nuxt-devtools-anchor"]')
@@ -68,16 +78,6 @@ describe('Main spec', () => {
     cy.get('@login-button').click()
     cy.get('@login-title').should('not.exist')
     cy.get('[data-test="dashboard-title"]').should('exist')
-
-    // test create account link
-    cy.visit('')
-    cy.get('[id="nuxt-devtools-anchor"]')
-
-
-    cy.get('@login-title').should('be.visible')
-    cy.get('[data-test="create-account-button"]').click()
-    cy.get('@login-title').should('not.exist')
-    cy.get('[data-test="create-account-title"]').should('exist')
   })
   it('test create account', () => {
     // test empty inputs

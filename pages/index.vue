@@ -35,6 +35,7 @@ export default {
     beforeMount () {
         if (this.userStore.savedEmail) this.email = this.userStore.savedEmail
         if (this.userStore.savedPassword) this.password = this.userStore.savedPassword
+        if (this.userStore.request.token) navigateTo('/dashboard')
     },
     methods: {
         login() {
