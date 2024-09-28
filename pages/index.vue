@@ -1,7 +1,7 @@
 <template>
-    <div class="flex flex-col justify-center items-center w-screen h-screen">
+    <div class="flex flex-col justify-center items-center w-screen h-dvh">
         <PageHeader/>
-        <ModalComponent class="w-1/4">
+        <ModalComponent class="w-10/12 md:w-6/12 lg:w-2/5">
             <h1 data-test="login-title" class="heading-m">Login</h1>
             <p class="body-m color-gray">Insira suas informações de acesso</p>
             <form @submit.prevent="login()">
@@ -45,6 +45,7 @@ export default {
             this.isLoading = true
             this.userStore.request.login(this.email, this.password).then(resp => {
                 this.userStore.request.token = resp.data.token
+                localStorage.setItem('token', resp.data.token)
                 navigateTo('/dashboard')
             }).catch(error => {
                 if (error.response.status == 403 && error.response.data.error == 'Wrong credentials'){

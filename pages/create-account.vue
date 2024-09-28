@@ -9,7 +9,7 @@
                     Endereço de email</p>
                 <InputComponent data-test="email-input" @click="emailAlert = ''" :alert="emailAlert" icon="email"
                     v-model="email" placeholder="e.g. alex@email.com" />
-                <p data-test="email-label" :class="{ 'text-red-500': nameAlert }" class="body-s color-dark-gray mt-4">
+                <p data-test="name-label" :class="{ 'text-red-500': nameAlert }" class="body-s color-dark-gray mt-4">
                     Nome</p>
                 <InputComponent data-test="name-input" @click="nameAlert = ''" :alert="nameAlert" icon="name"
                     v-model="name" placeholder="Nome da conta" />
@@ -17,15 +17,15 @@
                     class="body-s color-dark-gray mt-4">Senha</p>
                 <InputComponent data-test="password-input" @click="passwordAlert = ''" :alert="passwordAlert"
                     icon="password" v-model="password" :isPassword="true" placeholder="Ao menos 8 caracteres" />
-                <p data-test="password-label" :class="{ 'text-red-500': passwordAlert }"
+                <p data-test="confirm-password-label" :class="{ 'text-red-500': passwordAlert }"
                     class="body-s color-dark-gray mt-4">Confirmar senha</p>
-                <InputComponent data-test="password-input" @click="passwordAlert = ''" :alert="passwordAlert"
+                <InputComponent data-test="confirm-password-input" @click="passwordAlert = ''" :alert="passwordAlert"
                     icon="password" v-model="confirmPassword" :isPassword="true" placeholder="Ao menos 8 caracteres" />
 
                 <p class="body-s color-gray mt-4">A senha deve ter ao menos 8 caracteres</p>
 
 
-                <ButtonComponent data-test="login-button" text="Criar uma nova conta" class="w-full mt-10" />
+                <ButtonComponent data-test="create-account-button" text="Criar uma nova conta" class="w-full mt-10" />
             </form>
 
             <p class="body-m color-gray text-center mt-2">Já possui uma conta? <NuxtLink to="/" data-test="home-button"
@@ -56,12 +56,12 @@ export default {
     },
     methods: {
         createAccount() {
-            if (!this.email) this.emailAlert = 'insira um email'
             if (!this.validateEmail(this.email)) this.emailAlert = 'insira um email valido'
-            if (!this.name) this.nameAlert = 'insira um nome'
-            if (!this.password || !this.confirmPassword) this.passwordAlert = 'insira uma senha'
             if (this.password != this.confirmPassword) this.passwordAlert = 'senhas diferentes'
             if (this.password.length < 8) this.passwordAlert = 'senha muito curta'
+            if (!this.name) this.nameAlert = 'insira um nome'
+            if (!this.password || !this.confirmPassword) this.passwordAlert = 'insira uma senha'
+            if (!this.email) this.emailAlert = 'insira um email'
             if (this.emailAlert || this.passwordAlert || this.nameAlert) return
             this.isLoading = true
             this.userStore.request.createAccount(this.email, this.name, this.password).then(resp => {
@@ -88,5 +88,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
+.text-red-500
+    color: var(--red)
 </style>
