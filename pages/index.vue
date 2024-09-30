@@ -18,48 +18,41 @@
     </div>
 </template>
 
-<script>
-import { mapStores } from 'pinia'
-import { useUserStore } from '~/stores/user';
+<script setup>
+import { ref } from 'vue'
+import RequestService from '~/services/RequestService';
+import { useUserStore } from '@/stores/user'
 
-export default {
-    name: 'HomePage',
-    data() {
-        return {
-            email: '',
-            password: '',
-            alertMessage: '',
-            isLoading: false
+const store = useUserStore()
+let email = ref('')
+let password = ref('')
+let alertMessage = ref('')
+let isLoading = ref(false)
+const service = new RequestService()
+
+onBeforeMount(() => {
+    if (store.savedEmail) email.value = store.savedEmail
+    if (store.savedPassword) password.value = store.savedPassword
+    if (localStorage.getItem('token')) navigateTo('/dashboard')
+})
+
+function login() {
+    if (!email.value || !password.value){
+        alertMessage.value = 'Preencha os campos'
+        return
+    }
+    isLoading.value = true
+    service.login(email.value, password.value).then(resp => {
+        localStorage.setItem('token', resp.data.token)
+        navigateTo('/dashboard')
+    }).catch(error => {
+        if (error.response.status == 403 && error.response.data.error == 'Wrong credentials'){
+            alertMessage.value = 'Incorreto' 
         }
-    },
-    beforeMount () {
-        if (this.userStore.savedEmail) this.email = this.userStore.savedEmail
-        if (this.userStore.savedPassword) this.password = this.userStore.savedPassword
-        if (this.userStore.request.token) navigateTo('/dashboard')
-    },
-    methods: {
-        login() {
-            if (!this.email || !this.password){
-                this.alertMessage = 'Preencha os campos'
-                return
-            }
-            this.isLoading = true
-            this.userStore.request.login(this.email, this.password).then(resp => {
-                this.userStore.request.token = resp.data.token
-                localStorage.setItem('token', resp.data.token)
-                navigateTo('/dashboard')
-            }).catch(error => {
-                if (error.response.status == 403 && error.response.data.error == 'Wrong credentials'){
-                    this.alertMessage = 'Incorreto' 
-                }
-                this.isLoading = false
-            })
-        }
-    },
-    computed: {
-        ...mapStores(useUserStore)
-    },
+        isLoading.value = false
+    })
 }
+
 </script>
 
 <style lang="sass" scoped>

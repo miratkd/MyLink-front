@@ -2,7 +2,7 @@ describe('Main spec', () => {
   it('project is up', () => {
     cy.visit('')
   })
-  it.only('test home form', () => {
+  it('test home form', () => {
 
     // test empty inputs
     cy.visit('')

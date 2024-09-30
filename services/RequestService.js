@@ -2,9 +2,11 @@ import axios from 'axios'
 
 export default class RequestService {
     constructor() {
-        this.token = localStorage.getItem('token')
-        this.config = { headers: { Authorization: 'Bearer ' +  this.token } }
         this.url = 'https://mylinkback-production.up.railway.app/api/'
+    }
+
+    config (token) {
+        return { headers: { Authorization: 'Bearer ' +  token } }
     }
 
     login(email, password) {
@@ -20,5 +22,9 @@ export default class RequestService {
             password,
             name
         })
+    }
+
+    getMyCards(token){
+        return axios.get(this.url + 'cards', this.config(token))
     }
 }

@@ -36,7 +36,7 @@
     </div>
 </template>
 
-<script>
+<!-- <script>
 import { mapStores } from 'pinia'
 import { useUserStore } from '~/stores/user';
 
@@ -56,22 +56,22 @@ export default {
     },
     methods: {
         createAccount() {
-            if (!this.validateEmail(this.email)) this.emailAlert = 'insira um email valido'
-            if (this.password != this.confirmPassword) this.passwordAlert = 'senhas diferentes'
-            if (this.password.length < 8) this.passwordAlert = 'senha muito curta'
-            if (!this.name) this.nameAlert = 'insira um nome'
-            if (!this.password || !this.confirmPassword) this.passwordAlert = 'insira uma senha'
-            if (!this.email) this.emailAlert = 'insira um email'
-            if (this.emailAlert || this.passwordAlert || this.nameAlert) return
-            this.isLoading = true
-            this.userStore.request.createAccount(this.email, this.name, this.password).then(resp => {
-                this.userStore.savedEmail = this.email
-                this.userStore.savedPassword = this.password
+            if (!validateEmail(email)) emailAlert = 'insira um email valido'
+            if (password != confirmPassword) passwordAlert = 'senhas diferentes'
+            if (password.length < 8) passwordAlert = 'senha muito curta'
+            if (!name) nameAlert = 'insira um nome'
+            if (!password || !confirmPassword) passwordAlert = 'insira uma senha'
+            if (!email) emailAlert = 'insira um email'
+            if (emailAlert || passwordAlert || nameAlert) return
+            isLoading = true
+            userStore.request.createAccount(email, name, password).then(resp => {
+                userStore.savedEmail = email
+                userStore.savedPassword = password
                 navigateTo('/')
             }).catch(error => {
                 if (error.response.data.message == 'The email has already been taken.'){
-                    this.emailAlert = 'email já em uso'
-                    this.isLoading = false
+                    emailAlert = 'email já em uso'
+                    isLoading = false
                 }
             })
 
@@ -85,6 +85,50 @@ export default {
         ...mapStores(useUserStore)
     },
 }
+</script> -->
+
+<script setup>
+import { ref } from 'vue'
+import RequestService from '~/services/RequestService';
+import { useUserStore } from '~/stores/user';
+
+let email = ref('')
+let password = ref('')
+let name = ref('')
+let nameAlert = ref('')
+let confirmPassword = ref('')
+let emailAlert = ref('')
+let passwordAlert = ref('')
+let isLoading = ref(false)
+const store = useUserStore()
+const service = new RequestService()
+
+function validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+function createAccount() {
+    if (!validateEmail(email.value)) emailAlert.value = 'insira um email valido'
+    if (password.value != confirmPassword.value) passwordAlert.value = 'senhas diferentes'
+    if (password.value.length < 8) passwordAlert.value = 'senha muito curta'
+    if (!name.value) nameAlert.value = 'insira um nome'
+    if (!password.value || !confirmPassword.value) passwordAlert.value = 'insira uma senha'
+    if (!email.value) emailAlert.value = 'insira um email'
+    if (emailAlert.value || passwordAlert.value || nameAlert.value) return
+    isLoading.value = true
+    service.createAccount(email.value, name.value, password.value).then(() => {
+        store.savedEmail = email
+        store.savedPassword = password
+        navigateTo('/')
+    }).catch(error => {
+        if (error.response.data.message == 'The email has already been taken.'){
+            emailAlert.value = 'email já em uso'
+            isLoading.value = false
+        }
+    })
+}
+
 </script>
 
 <style lang="sass" scoped>
