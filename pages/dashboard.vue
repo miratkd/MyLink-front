@@ -10,24 +10,28 @@
                 <h1 class="heading-s" >Customize os seus cartões</h1>
                 <p class="body-m color-gray">Adicione / edite / remova os cartões abaixo e então compartilhe eles com o mundo!</p>
                 <ButtonSecondary text="+ Cartão" class="mt-7"/>
-                
+                <EmptyCards/>
             </ModalComponent>
         </div>
-
+        <CreateCard/>
+        <LoadingComponent v-if="isLoading"/>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import RequestService from '~/services/RequestService';
 
 let cards = ref([])
+let isLoading = ref(true)
 const service = new RequestService()
 
 onBeforeMount(() => {
     if (!localStorage.getItem('token')) navigateTo('/')
     service.getMyCards(localStorage.getItem('token')).then(resp => {
         cards.value = resp.data.data
+        isLoading.value = false
+    }).catch(error => {
+        logout()
     })
 })
 

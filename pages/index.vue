@@ -19,7 +19,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import RequestService from '~/services/RequestService';
 import { useUserStore } from '@/stores/user'
 

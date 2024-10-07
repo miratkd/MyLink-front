@@ -80,25 +80,24 @@ describe('Main spec', () => {
     cy.get('[data-test="dashboard-title"]').should('exist')
   })
   it('test create account', () => {
-    // test empty inputs
+    // acessa a pagina
     cy.visit('create-account')
+    // espera a pagina carregar (exclusividade do nuxt)
     cy.get('[id="nuxt-devtools-anchor"]')
+    // checa se o titulo da pagina esta mostrando
     cy.get('[data-test="create-account-title"]').as('create-account-title').should('be.visible')
-
+    // checa se os inputs estão sem o alerta
     cy.get('[data-test="email-label"]').as('email-label').should('not.have.class', 'text-red-500')
     cy.get('[data-test="email-input"]').as('email-input').should('not.have.class', 'border-red-500')
-
     cy.get('[data-test="name-label"]').as('name-label').should('not.have.class', 'text-red-500')
     cy.get('[data-test="name-input"]').as('name-input').should('not.have.class', 'border-red-500')
-
     cy.get('[data-test="password-label"]').as('password-label').should('not.have.class', 'text-red-500')
     cy.get('[data-test="password-input"]').as('password-input').should('not.have.class', 'border-red-500')
-
     cy.get('[data-test="confirm-password-label"]').as('confirm-password-label').should('not.have.class', 'text-red-500')
     cy.get('[data-test="confirm-password-input"]').as('confirm-password-input').should('not.have.class', 'border-red-500')
-
+    // clica no botão
     cy.get('[data-test="create-account-button"]').as('create-account-button').click()
-
+    // checa se os inputs estão com o alerta
     cy.get('@email-label').should('have.class', 'text-red-500')
     cy.get('@email-input').should('have.class', 'border-red-500')
     cy.get('@name-label').should('have.class', 'text-red-500')

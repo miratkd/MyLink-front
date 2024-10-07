@@ -36,59 +36,7 @@
     </div>
 </template>
 
-<!-- <script>
-import { mapStores } from 'pinia'
-import { useUserStore } from '~/stores/user';
-
-export default {
-    name: "createAccountPage",
-    data() {
-        return {
-            email: '',
-            password: '',
-            name: '',
-            nameAlert: '',
-            confirmPassword: '',
-            emailAlert: '',
-            passwordAlert: '',
-            isLoading: false
-        }
-    },
-    methods: {
-        createAccount() {
-            if (!validateEmail(email)) emailAlert = 'insira um email valido'
-            if (password != confirmPassword) passwordAlert = 'senhas diferentes'
-            if (password.length < 8) passwordAlert = 'senha muito curta'
-            if (!name) nameAlert = 'insira um nome'
-            if (!password || !confirmPassword) passwordAlert = 'insira uma senha'
-            if (!email) emailAlert = 'insira um email'
-            if (emailAlert || passwordAlert || nameAlert) return
-            isLoading = true
-            userStore.request.createAccount(email, name, password).then(resp => {
-                userStore.savedEmail = email
-                userStore.savedPassword = password
-                navigateTo('/')
-            }).catch(error => {
-                if (error.response.data.message == 'The email has already been taken.'){
-                    emailAlert = 'email já em uso'
-                    isLoading = false
-                }
-            })
-
-        },
-        validateEmail(email) {
-            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return regex.test(email);
-        }
-    },
-    computed: {
-        ...mapStores(useUserStore)
-    },
-}
-</script> -->
-
 <script setup>
-import { ref } from 'vue'
 import RequestService from '~/services/RequestService';
 import { useUserStore } from '~/stores/user';
 
