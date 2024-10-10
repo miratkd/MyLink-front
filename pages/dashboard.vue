@@ -9,11 +9,11 @@
             <ModalComponent class="p-3">
                 <h1 class="heading-s" >Customize os seus cartões</h1>
                 <p class="body-m color-gray">Adicione / edite / remova os cartões abaixo e então compartilhe eles com o mundo!</p>
-                <ButtonSecondary text="+ Cartão" class="mt-7"/>
+                <ButtonSecondary @click="showCreateCard = true" text="+ Cartão" class="mt-7"/>
                 <EmptyCards/>
             </ModalComponent>
         </div>
-        <CreateCard/>
+        <CreateCard v-if="showCreateCard" :close="()=>showCreateCard=false"/>
         <LoadingComponent v-if="isLoading"/>
     </div>
 </template>
@@ -23,6 +23,7 @@ import RequestService from '~/services/RequestService';
 
 let cards = ref([])
 let isLoading = ref(true)
+let showCreateCard = ref(false)
 const service = new RequestService()
 
 onBeforeMount(() => {
