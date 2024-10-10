@@ -27,4 +27,12 @@ export default class RequestService {
     getMyCards(token){
         return axios.get(this.url + 'cards', this.config(token))
     }
+
+    createCard(token, payload){
+        return axios.post(this.url + 'cards', payload, this.config(token))
+    }
+
+    deleteCard(token, id){
+        return axios.delete(this.url + 'cards/' + id, this.config(token))
+    }
 }

@@ -16,11 +16,11 @@
                 <p data-test="password-label" :class="{ 'text-red-500': passwordAlert }"
                     class="body-s color-dark-gray mt-4">Senha</p>
                 <InputComponent data-test="password-input" @click="passwordAlert = ''" :alert="passwordAlert"
-                    icon="password" v-model="password" :isPassword="true" placeholder="Ao menos 8 caracteres" />
+                    icon="password" v-model="password" type="password" placeholder="Ao menos 8 caracteres" />
                 <p data-test="confirm-password-label" :class="{ 'text-red-500': passwordAlert }"
                     class="body-s color-dark-gray mt-4">Confirmar senha</p>
                 <InputComponent data-test="confirm-password-input" @click="passwordAlert = ''" :alert="passwordAlert"
-                    icon="password" v-model="confirmPassword" :isPassword="true" placeholder="Ao menos 8 caracteres" />
+                    icon="password" v-model="confirmPassword" type="password" placeholder="Ao menos 8 caracteres" />
 
                 <p class="body-s color-gray mt-4">A senha deve ter ao menos 8 caracteres</p>
 

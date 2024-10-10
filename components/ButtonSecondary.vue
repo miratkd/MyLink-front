@@ -1,12 +1,16 @@
 <template>
-    <button class="color-purple border rounded w-full heading-s">
+    <button class="color-purple border px-5 py-1 rounded" :class="font">
         {{ text }}
     </button>
 </template>
 
 <script setup>
 const props = defineProps({
-  text: String
+  text: String,
+  font: {
+    type: String,
+    default: 'body-m'
+  }
 })
 </script>
 

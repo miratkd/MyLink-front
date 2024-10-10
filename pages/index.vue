@@ -8,7 +8,7 @@
                 <p data-test="email-label" :class="{'text-red-500': alertMessage}" class="body-s color-dark-gray mt-4">Endereço de email</p>
                 <InputComponent data-test="email-input" @click="alertMessage=''" :alert="alertMessage" icon="email" v-model="email" placeholder="e.g. alex@email.com"/>
                 <p data-test="password-label" :class="{'text-red-500': alertMessage}" class="body-s color-dark-gray mt-4">Senha</p>
-                <InputComponent data-test="password-input" @click="alertMessage=''" :alert="alertMessage" icon="password" v-model="password" :isPassword="true" placeholder="Insira sua senha"/>
+                <InputComponent data-test="password-input" @click="alertMessage=''" :alert="alertMessage" icon="password" v-model="password" type="password" placeholder="Insira sua senha"/>
                 <ButtonComponent data-test="login-button" text="Login" class="w-full mt-10"/>
             </form>
             
