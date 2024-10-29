@@ -1,6 +1,6 @@
 <template>
     <div @click="() => props.close()" class="bg-gray-500/50 fixed z-10 top-0 left-0 h-dvh w-dvw flex items-center justify-center">
-        <ModalComponent @click.stop class="md:w-3/4">
+        <ModalComponent @click.stop class="md:w-3/4 lg:w-1/2">
             <h1 data-test="create-card-modal" class="heading-m md:text-center">Novo cartão</h1>
             <p class="body-m color-gray md:text-center">Vamos criar um novo cartão de visita para você!</p>
             <form @submit.prevent="() => { }">

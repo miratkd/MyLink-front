@@ -1,10 +1,10 @@
 <template>
-    <div @click="() => props.close()" class="bg-gray-500/50 fixed z-10 top-0 left-0 h-dvh w-dvw flex items-center justify-center">
-        <ModalComponent @click.stop class="w-4/5 md:w-3/5">
+    <div @click="() => props.close()" class="bg-gray-500/50 fixed z-10 top-0 left-0 h-dvh w-dvw flex items-center justify-center ">
+        <ModalComponent @click.stop class="w-4/5 md:w-3/5 lg:w-2/5">
             <h3 class="heading-s text-center">Tem certeza que deseja remover esse cartão?</h3>
             <div class="w-full flex justify-between mt-5 md:justify-around">
-                <ButtonComponent @click="deleteCard()" class="py-0 md:w-1/3" text="Sim, remover"/>
-                <ButtonSecondary class="py-0 md:w-1/3" @click="close()" text="não"/>
+                <ButtonComponent @click="deleteCard()" class="py-0 md:w-1/3 lg:py-1" text="Sim, remover"/>
+                <ButtonSecondary class="py-0 md:w-1/3 lg:py-1" @click="close()" text="Não"/>
             </div>
         </ModalComponent>
         <LoadingComponent v-if="isLoading"/>

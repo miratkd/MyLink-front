@@ -3,9 +3,9 @@
         <div class="flex justify-between items-center">
             <img :src="card.imageUrl" class="w-5" :alt="card.description">
             <span class="body-m font-bold color-gray truncate max-w-1/2">{{ card.title }}</span>
-            <span @click.stop="deleteCard(card.id)" class="body-m color-gray">Remover</span>
+            <span @click.stop="deleteCard(card.id)" class="body-m color-gray cursor-pointer">Remover</span>
         </div>
-        <p class="body-s color-gray mt-3 truncate">{{ card.description }}</p>
+        <p class="body-s color-gray mt-3 truncate lg:whitespace-normal">{{ card.description }}</p>
     </div>
 </template>
 

@@ -7,11 +7,18 @@
         </div>
         <div class="px-4 py-3">
             <ModalComponent class="p-3">
-                <h1 class="heading-s" >Customize os seus cartões</h1>
-                <p class="body-m color-gray">Adicione / edite / remova os cartões abaixo e então compartilhe eles com o mundo!</p>
-                <ButtonSecondary font="heading-s" @click="showCreateCard = true" text="+ Cartão" class="mt-7 w-full "/>
+                <div class="lg:flex justify-between">
+                    <div>
+                        <h1 class="heading-s" >Customize os seus cartões</h1>
+                        <p class="body-m color-gray">Adicione / edite / remova os cartões abaixo e então compartilhe eles com o mundo!</p>
+                    </div>
+                    <ButtonSecondary font="heading-s" @click="showCreateCard = true" text="+ Cartão" class="mt-7 w-full lg:w-1/3 lg:mt-0"/>
+                </div>
                 <EmptyCards v-if="!isLoading && cards.length == 0"/>
-                <CardComponent v-for="card in cards" :deleteCard="id => deleteCardId = id" :card="card" />
+                <div class="lg:grid lg:grid-cols-3 lg:gap-5">
+                    <CardComponent v-for="card in cards" :deleteCard="id => deleteCardId = id" :card="card" />
+                </div>
+                
             </ModalComponent>
         </div>
         <CreateCard v-if="showCreateCard" :updatePage="loadPage" :close="()=>showCreateCard=false"/>
