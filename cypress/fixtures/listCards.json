@@ -1,0 +1,54 @@
+{
+    "data": [
+        {
+            "mainColor": "#38f0d1",
+            "displayEmail": "lucas-mira1@hotmail.com",
+            "imageUrl": "https:\/\/pode-me-chamar-de-mira.netlify.app\/img\/photo.2fcc59c4.png",
+            "title": "lucas - Vue | Nuxt | Laravel",
+            "description": "Desenvolvedor Full-Stack buscando sempre uma nova oportunidade de crescer. Fui exposto \u00e0 tecnologia desde muito cedo, acredito que esse seja o motivo pelo qual c\u00f3digo sempre foi algo t\u00e3o natural para min.",
+            "id": 11,
+            "user": "miratkd"
+        },
+        {
+            "mainColor": "#633CFF",
+            "displayEmail": "adasdaw@hotmail.com",
+            "imageUrl": "https:\/\/th.bing.com\/th\/id\/R.fa9644da6ad44f8c0ec711b9f9108a43?rik=mtnwYzeG7DURFg&pid=ImgRaw&r=0",
+            "title": "asdawdas",
+            "description": "asdawd awdasd awd aw adwadawd",
+            "id": 13,
+            "user": "miratkd"
+        }
+    ],
+    "links": {
+        "first": "http:\/\/mylinkback-production.up.railway.app\/api\/cards?page=1",
+        "last": "http:\/\/mylinkback-production.up.railway.app\/api\/cards?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "http:\/\/mylinkback-production.up.railway.app\/api\/cards?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "http:\/\/mylinkback-production.up.railway.app\/api\/cards",
+        "per_page": 10,
+        "to": 2,
+        "total": 2
+    }
+}

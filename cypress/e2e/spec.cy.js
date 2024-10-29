@@ -168,4 +168,63 @@ describe('Main spec', () => {
     cy.get('@input-field').last().should('have.value', account.password)
 
   })
+  it('test dashboard', ()=>{
+    cy.intercept('GET', 'https://mylinkback-production.up.railway.app/api/cards', {
+      statusCode: 200,
+      fixture: 'listCards.json'
+    }).as('get cards')
+    window.localStorage.setItem('token', '123123')
+    cy.visit('dashboard')
+    // espera a pagina carregar (exclusividade do nuxt)
+    cy.get('[id="nuxt-devtools-anchor"]')
+    cy.get('[data-test="dashboard-title"]').as('dashboard-title').should('exist')
+    cy.get('[data-test="add-new-card"]').as('add-new-card').should('exist')
+    cy.get('[data-test="create-card-modal"]').should('not.exist')
+    cy.get('[data-test="card-component-11"]').should('exist')
+    cy.get('[data-test="card-component-title-11"]').should('have.text', 'lucas - Vue | Nuxt | Laravel')
+    cy.get('[data-test="card-component-13"]').should('exist')
+    cy.get('[data-test="card-component-title-13"]').should('have.text', 'asdawdas')
+
+    cy.get('@add-new-card').click()
+
+    cy.get('[data-test="create-card-modal"]').as('create-card-modal').should('exist')
+    cy.get('[data-test="create-card-button"]').as('create-card-button').click()
+    cy.get('@create-card-modal').should('exist')
+    cy.get('[data-test="title-label"]').as('title-label').should('have.class','text-red-500')
+    cy.get('[data-test="email-label"]').as('email-label').should('have.class','text-red-500')
+    cy.get('[data-test="description-label"]').as('description-label').should('have.class','text-red-500')
+
+    cy.get('[data-test="title-input"]').type('test card')
+    cy.get('[data-test="email-input"]').type('test-card@hotmail.com')
+    cy.get('[data-test="description-input"]').type('adasdawdasd')
+
+    cy.intercept('POST', 'https://mylinkback-production.up.railway.app/api/cards', {
+      statusCode: 201,
+      fixture: 'createCard.json'
+    }).as('create card')
+    cy.intercept('GET', 'https://mylinkback-production.up.railway.app/api/cards', {
+      statusCode: 200,
+      fixture: 'listCardsFull.json'
+    }).as('get cards full')
+
+    cy.get('@create-card-button').click()
+
+    cy.get('[data-test="card-component-14"]').should('exist')
+    cy.get('[data-test="card-component-title-14"]').should('have.text', 'test card')
+
+    cy.get('[data-test="remove-card-modal"]').should('not.exist')
+    cy.get('[data-test="card-component-delete-14"]').click()
+    cy.get('[data-test="remove-card-modal"]').as('remove-card-modal').should('exist')
+
+
+    cy.intercept('DELETE', 'https://mylinkback-production.up.railway.app/api/cards/14', {
+      statusCode: 200,
+      fixture: 'deleteCard.json'
+    }).as('delete card')
+
+    cy.get('[data-test="remove-card-button"]').click()
+
+    cy.get('@remove-card-modal').should('not.exist')
+
+  })
 })

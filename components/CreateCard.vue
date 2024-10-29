@@ -83,5 +83,6 @@ function logout() {
 </script>
 
 <style lang="sass" scoped>
-
+.text-red-500
+    color: var(--red)
 </style>

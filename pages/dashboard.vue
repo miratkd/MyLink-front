@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="flex items-center bg-white px-4 py-5 justify-between">
-            <img data-test="dashboard-title" class="w-7" src="~/assets/logo-devlinks-small.svg" alt="">
+            <img class="w-7" src="~/assets/logo-devlinks-small.svg" alt="">
             <img @click="logout" class="w-11 text-purple-500 border border-solid rounded border-purple-700 px-2 py-1"
                 src="~/assets/logout-icon.svg" alt="">
         </div>
@@ -9,10 +9,10 @@
             <ModalComponent class="p-3">
                 <div class="lg:flex justify-between">
                     <div>
-                        <h1 class="heading-s" >Customize os seus cartões</h1>
+                        <h1 data-test="dashboard-title" class="heading-s" >Customize os seus cartões</h1>
                         <p class="body-m color-gray">Adicione / edite / remova os cartões abaixo e então compartilhe eles com o mundo!</p>
                     </div>
-                    <ButtonSecondary font="heading-s" @click="showCreateCard = true" text="+ Cartão" class="mt-7 w-full lg:w-1/3 lg:mt-0"/>
+                    <ButtonSecondary data-test="add-new-card" font="heading-s" @click="showCreateCard = true" text="+ Cartão" class="mt-7 w-full lg:w-1/3 lg:mt-0"/>
                 </div>
                 <EmptyCards v-if="!isLoading && cards.length == 0"/>
                 <div class="lg:grid lg:grid-cols-3 lg:gap-5">
