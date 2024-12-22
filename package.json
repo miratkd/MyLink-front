@@ -16,7 +16,8 @@
     "pinia": "^2.2.2",
     "sass": "^1.78.0",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",

@@ -30,12 +30,12 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import RequestService from '~/services/RequestService';
 
 const props = defineProps({
-    close: Function,
-    updatePage: Function
+    close: {type:Function, required: true},
+    updatePage: {type:Function, required: true}
 })
 
 let titleAlert = ref('')
@@ -68,11 +68,11 @@ function createCard() {
         props.updatePage()
     }).catch(error => {
         if (error.response.data.message == 'Unauthenticated.') logout()
-        isLoading = false
+        isLoading.value = false
     })
     
 }
-function validateEmail(email) {
+function validateEmail(email: string) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
 }

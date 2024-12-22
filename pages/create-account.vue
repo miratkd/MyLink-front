@@ -36,22 +36,22 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import RequestService from '~/services/RequestService';
 import { useUserStore } from '~/stores/user';
 
-let email = ref('')
-let password = ref('')
-let name = ref('')
-let nameAlert = ref('')
-let confirmPassword = ref('')
-let emailAlert = ref('')
-let passwordAlert = ref('')
-let isLoading = ref(false)
+const email = ref('')
+const password = ref('')
+const name = ref('')
+const nameAlert = ref('')
+const confirmPassword = ref('')
+const emailAlert = ref('')
+const passwordAlert = ref('')
+const isLoading = ref(false)
 const store = useUserStore()
 const service = new RequestService()
 
-function validateEmail(email) {
+function validateEmail(email:string) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
 }
@@ -66,8 +66,8 @@ function createAccount() {
     if (emailAlert.value || passwordAlert.value || nameAlert.value) return
     isLoading.value = true
     service.createAccount(email.value, name.value, password.value).then(() => {
-        store.savedEmail = email
-        store.savedPassword = password
+        store.savedEmail = email.value
+        store.savedPassword = password.value
         navigateTo('/')
     }).catch(error => {
         if (error.response.data.message == 'The email has already been taken.'){

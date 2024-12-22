@@ -11,16 +11,16 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import RequestService from '~/services/RequestService';
 
 const service = new RequestService
 let isLoading = ref(false)
 
 const props = defineProps({
-    close: Function,
-    id: Number,
-    updatePage: Function
+    close: {type:Function, required: true},
+    id: {type:Number, required: true},
+    updatePage: {type:Function, required: true}
 })
 
 function deleteCard() {
@@ -30,7 +30,7 @@ function deleteCard() {
         props.updatePage()
     }).catch(error => {
         if (error.response.data.message == 'Unauthenticated.') logout()
-        isLoading = false
+        isLoading.value = false
     })
 }
 function logout() {

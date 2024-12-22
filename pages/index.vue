@@ -18,7 +18,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import RequestService from '~/services/RequestService';
 import { useUserStore } from '@/stores/user'
 
