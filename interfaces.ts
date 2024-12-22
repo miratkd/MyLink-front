@@ -21,5 +21,6 @@ export interface Link {
 export interface Plataform{
     color: string,
     imgUrl: string,
-    name: string
+    name: string,
+    id: number
 }

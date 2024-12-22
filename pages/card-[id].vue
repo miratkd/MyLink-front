@@ -12,8 +12,7 @@
                 src="~/assets/icon-preview-header.svg" alt="">
         </div>
         <div class="px-4 py-3">
-            <button @click="addLink(1, 'https://www.youtube.com/')">add link</button>
-            <CardLinksTab v-if="tab == 'links' && card" :card="card"/>
+            <CardLinksTab v-if="tab == 'links' && card" :addLink="addLink" :card="card" :plataforms="plataforms"/>
         </div>
 
         <LoadingComponent v-if="isLoading"/>
@@ -36,12 +35,13 @@ onMounted(()=>{
     const plataformsRequest = service.getPlataforms(localStorage.getItem('token'))
     Promise.all([cardsRequest, plataformsRequest]).then(resp=>{
         card.value = resp[0].data
-        plataforms.value = resp[1].data
+        plataforms.value = resp[1].data.data
         isLoading.value = false
     })
 })
 
 function addLink (id: number, link: string){
+    isLoading.value = true
     const payload = {
         link,
         plataformId: id,
@@ -49,6 +49,7 @@ function addLink (id: number, link: string){
     }
     service.addLink(localStorage.getItem('token'), payload).then(resp => {
         card.value = resp.data
+        isLoading.value = false
     })
 }
 
