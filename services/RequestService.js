@@ -35,4 +35,16 @@ export default class RequestService {
     deleteCard(token, id){
         return axios.delete(this.url + 'cards/' + id, this.config(token))
     }
+
+    getCard(token, id){
+        return axios.get(this.url + 'cards/' + id, this.config(token))
+    }
+
+    getPlataforms(token){
+        return axios.get(this.url + 'plataforms/', this.config(token))
+    }
+
+    addLink(token, payload){
+        return axios.post(this.url + 'addLink', payload, this.config(token))
+    }
 }
