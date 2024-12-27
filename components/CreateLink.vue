@@ -32,7 +32,6 @@ function addLinkClick(){
     
     if (!linkUrl.value) linkAlert.value = 'Insira um link'
     if (!selectedPlataform.value) plataformAlert.value = 'Selecione uma plataforma'
-    return
     props.addLink(selectedPlataform.value?.id, linkUrl.value)
     props.close()
 }

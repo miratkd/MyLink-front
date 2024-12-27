@@ -12,7 +12,7 @@
                 src="~/assets/icon-preview-header.svg" alt="">
         </div>
         <div class="px-4 py-3">
-            <CardLinksTab v-if="tab == 'links' && card" :addLink="addLink" :card="card" :plataforms="plataforms"/>
+            <CardLinksTab v-if="tab == 'links' && !isLoading" :addLink="addLink" :updateLinks="updateLink" :card="card!" :plataforms="plataforms"/>
         </div>
 
         <LoadingComponent v-if="isLoading"/>
@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import RequestService from '~/services/RequestService';
-import type { Card, Plataform } from '~/interfaces';
+import type { Card, Link, Plataform } from '~/interfaces';
 
 const tab = ref('links')
 const isLoading = ref(true)
@@ -36,6 +36,7 @@ onMounted(()=>{
     Promise.all([cardsRequest, plataformsRequest]).then(resp=>{
         card.value = resp[0].data
         plataforms.value = resp[1].data.data
+        card.value?.links?.forEach(link => {link.plataform = plataforms.value.find(p => p.name == link.plataformName)})
         isLoading.value = false
     })
 })
@@ -53,6 +54,14 @@ function addLink (id: number, link: string){
     })
 }
 
+function updateLink( links: Link[]){
+    isLoading.value = true
+    service.updateLink(localStorage.getItem('token'), route.params.id, {links: links.map(link => [link.id, link.position])}).then(resp => {
+        card.value = resp.data
+        card.value?.links?.forEach(link => {link.plataform = plataforms.value.find(p => p.name == link.plataformName)})
+        isLoading.value = false
+    })
+}
 </script>
 
 <style lang="sass" scoped>

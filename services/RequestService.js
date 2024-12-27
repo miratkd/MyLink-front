@@ -47,4 +47,8 @@ export default class RequestService {
     addLink(token, payload){
         return axios.post(this.url + 'addLink', payload, this.config(token))
     }
+
+    updateLink(token,id,payload){
+        return axios.put(this.url + 'updateCardOrder/' + id, payload, this.config(token))
+    }
 }

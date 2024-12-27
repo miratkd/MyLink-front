@@ -2,7 +2,7 @@
     <div class="relative flex items-center">
         <textarea :class="{ 'border-red-500': alert }" :placeholder="placeholder"
             class="border px-2 py-1 rounded mt-2  input-container  w-full h-20 body-m color-gray component-input"
-            :value="modelValue" @input="$emit('update:modelValue', handleChange)">
+            :value="modelValue" @input="handleChange">
         </textarea>
         <span data-test="input-alert" class="absolute right-3 text-red-400 body-s">{{ alert }}</span>
     </div>

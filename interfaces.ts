@@ -15,7 +15,8 @@ export interface Link {
     link: string,
     id: number,
     icon: string,
-    color: string
+    color: string,
+    plataform?: Plataform
 }
 
 export interface Plataform{

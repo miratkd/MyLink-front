@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'border-red-500': alert}" class="border relative px-5 py-1 rounded mt-2 flex input-container" >
+    <div :class="{'border-red-500': alert}" class="border bg-white relative px-5 py-1 rounded mt-2 flex input-container" >
         <img v-if="icon == 'email'" src="~/assets/icon-email.svg" alt="">
         <img v-if="icon == 'password'" src="~/assets/icon-password.svg" alt="">
         <img v-if="icon == 'name'" src="~/assets/icon-link.svg" alt="">

@@ -1,5 +1,5 @@
 <template>
-    <div :class="{ 'border-red-500': alert }" class="border relative px-3 py-1 rounded mt-2 flex input-container">
+    <div :class="{ 'border-red-500': alert }" class="border relative bg-white px-3 py-1 rounded mt-2 flex input-container">
         <img v-if="modelValue" :src="modelValue.imgUrl" :alt="modelValue.name" class="w-5">
         <select class="w-full select-outline" :value="modelValue ? modelValue.id : 0" @input="handleChange">
             <option v-for="op in options" :key="op.id" :value="op.id">{{ op.name }}</option>
