@@ -12,7 +12,7 @@
                 src="~/assets/icon-preview-header.svg" alt="">
         </div>
         <div class="px-4 py-3">
-            <CardLinksTab v-if="tab == 'links' && !isLoading" :addLink="addLink" :updateLinks="updateLink" :card="card!" :plataforms="plataforms"/>
+            <CardLinksTab v-if="tab == 'links'" :addLink="addLink" :updateLinks="updateLink" :card="card!" :plataforms="plataforms"/>
         </div>
 
         <LoadingComponent v-if="isLoading"/>

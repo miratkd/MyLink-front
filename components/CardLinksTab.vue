@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import type { Card, Link, Plataform } from '~/interfaces';
 const props = defineProps({
-    card: {type: Object as ()=> Card, required: true},
+    card: {type: Object as ()=> Card},
     plataforms: {type: Array<Plataform>, required: true},
     addLink: {type: Function, required: true},
     updateLinks: {type: Function, required: true}
@@ -35,8 +35,8 @@ const props = defineProps({
 const componentLinks = ref<Link[]>([])
 const showCreateLink = ref(false)
 
-onMounted(()=>{
-    componentLinks.value = props.card.links!
+watch(()=> props.card, ()=>{
+    componentLinks.value = props.card!.links!
 })
 function updateList() {
     const resp:Link[] = []
