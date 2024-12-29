@@ -49,6 +49,14 @@ export default class RequestService {
     }
 
     updateLink(token,id,payload){
+        return axios.put(this.url + 'updateLink/' + id, payload, this.config(token))
+    }
+
+    updateLinksOrder(token,id,payload){
         return axios.put(this.url + 'updateCardOrder/' + id, payload, this.config(token))
+    }
+
+    deleteLink (token, id) {
+        return axios.delete(this.url + 'removeLink/' + id, this.config(token))
     }
 }

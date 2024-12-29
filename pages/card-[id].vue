@@ -12,21 +12,24 @@
                 src="~/assets/icon-preview-header.svg" alt="">
         </div>
         <div class="px-4 py-3">
-            <CardLinksTab v-if="tab == 'links'" :addLink="addLink" :updateLinks="updateLink" :card="card!" :plataforms="plataforms"/>
+            <CardLinksTab v-if="tab == 'links'" :removeLink="clickRemove" :addLink="addLink" :updateLinksOrder="updateLinksOrder" :updateLink="updateLink" :card="card!" :plataforms="plataforms"/>
         </div>
 
         <LoadingComponent v-if="isLoading"/>
+        <ConfimModal v-if="showConfirm" :remove="removeLink" :close="() => showConfirm = undefined"/>
     </div>
 </template>
 
 <script setup lang="ts">
 import RequestService from '~/services/RequestService';
 import type { Card, Link, Plataform } from '~/interfaces';
+import ConfimModal from '~/components/ConfimModal.vue';
 
 const tab = ref('links')
 const isLoading = ref(true)
 const card = ref<Card|undefined>()
 const plataforms = ref<Plataform[]>([])
+const showConfirm = ref<undefined | Link>()
 const service = new RequestService()
 const route = useRoute()
 
@@ -34,10 +37,8 @@ onMounted(()=>{
     const cardsRequest = service.getCard(localStorage.getItem('token'),route.params.id)
     const plataformsRequest = service.getPlataforms(localStorage.getItem('token'))
     Promise.all([cardsRequest, plataformsRequest]).then(resp=>{
-        card.value = resp[0].data
         plataforms.value = resp[1].data.data
-        card.value?.links?.forEach(link => {link.plataform = plataforms.value.find(p => p.name == link.plataformName)})
-        isLoading.value = false
+        loadPage(resp[0])
     })
 })
 
@@ -49,18 +50,46 @@ function addLink (id: number, link: string){
         cardId: route.params.id
     }
     service.addLink(localStorage.getItem('token'), payload).then(resp => {
-        card.value = resp.data
-        isLoading.value = false
+        loadPage(resp)
     })
 }
 
-function updateLink( links: Link[]){
+function updateLinksOrder( links: Link[]){
     isLoading.value = true
-    service.updateLink(localStorage.getItem('token'), route.params.id, {links: links.map(link => [link.id, link.position])}).then(resp => {
-        card.value = resp.data
-        card.value?.links?.forEach(link => {link.plataform = plataforms.value.find(p => p.name == link.plataformName)})
-        isLoading.value = false
+    service.updateLinksOrder(localStorage.getItem('token'), route.params.id, {links: links.map(link => [link.id, link.position])}).then(resp => {
+        loadPage(resp)
     })
+}
+
+function loadPage(resp:any) {
+    card.value = resp.data
+    card.value?.links?.forEach(link => {link.plataform = plataforms.value.find(p => p.name == link.plataformName)})
+    isLoading.value = false
+}
+
+function updateLink(link: Link) {
+    const payload = {
+        "link": link.link,
+        "position": link.position,
+        "plataformId": link.plataform?.id
+    }
+    isLoading.value = true
+    service.updateLink(localStorage.getItem('token'), link.id, payload).then(resp => {
+        isLoading.value = false
+        link.isSaved = false
+    })
+}
+function clickRemove(link: Link) {
+    showConfirm.value = link
+}
+
+function removeLink() {
+    isLoading.value = true
+    service.deleteLink(localStorage.getItem('token'), showConfirm.value!.id).then(resp => {
+        showConfirm.value = undefined
+        loadPage(resp)
+    })
+    
 }
 </script>
 

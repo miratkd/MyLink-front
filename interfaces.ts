@@ -16,7 +16,8 @@ export interface Link {
     id: number,
     icon: string,
     color: string,
-    plataform?: Plataform
+    plataform?: Plataform,
+    isSaved?: boolean
 }
 
 export interface Plataform{
