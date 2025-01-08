@@ -1,0 +1,76 @@
+{
+    "data": [
+        {
+            "name": "Youtube",
+            "imgUrl": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/youtube.png?raw=true",
+            "color": "red",
+            "id": 1
+        },
+        {
+            "name": "Linkdin",
+            "imgUrl": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/linkdin.png?raw=true",
+            "color": "blue",
+            "id": 2
+        },
+        {
+            "name": "X",
+            "imgUrl": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/X.png?raw=true",
+            "color": "black",
+            "id": 3
+        },
+        {
+            "name": "Instagram",
+            "imgUrl": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/instagram.png?raw=true",
+            "color": "pink",
+            "id": 4
+        },
+        {
+            "name": "GitHub",
+            "imgUrl": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/github.png?raw=true",
+            "color": "black",
+            "id": 5
+        },
+        {
+            "name": "Snapchat",
+            "imgUrl": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/snapchat.png?raw=true",
+            "color": "yellow",
+            "id": 6
+        },
+        {
+            "name": "Facebook",
+            "imgUrl": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/facebook.png?raw=true",
+            "color": "blue",
+            "id": 7
+        },
+        {
+            "name": "Tinder",
+            "imgUrl": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/tinder.png?raw=true",
+            "color": "red",
+            "id": 8
+        },
+        {
+            "name": "Pinterest",
+            "imgUrl": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/pinterest.png?raw=true",
+            "color": "red",
+            "id": 9
+        },
+        {
+            "name": "Tiktok",
+            "imgUrl": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/tiktok.png?raw=true",
+            "color": "black",
+            "id": 10
+        },
+        {
+            "name": "Telegram",
+            "imgUrl": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/telegram2.jpeg?raw=true",
+            "color": "blue",
+            "id": 11
+        },
+        {
+            "name": "Onlyfans",
+            "imgUrl": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/onlyfans.png?raw=true",
+            "color": "blue",
+            "id": 12
+        }
+    ]
+}

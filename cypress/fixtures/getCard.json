@@ -1,0 +1,35 @@
+{
+    "mainColor": "#3dff54",
+    "displayEmail": "nuxt2@hotmail.com",
+    "imageUrl": "https:\/\/media.licdn.com\/dms\/image\/v2\/D4D03AQHeXikmtYJVAA\/profile-displayphoto-shrink_200_200\/profile-displayphoto-shrink_200_200\/0\/1728224450522?e=1740614400&v=beta&t=Bl-PK99YESOrXYH149aZ4-Hztqdoo5EdB3YCDOBRdLs",
+    "title": "Mira -Dev",
+    "description": "Desenvolvedor Full Stack | Vue.js | Nuxt.js | JavaScript | Django | Python | Laravel | PHP | Cypress | Tailwind",
+    "id": 16,
+    "user": "nuxt",
+    "links": [
+        {
+            "id": 19,
+            "link": "89785486789",
+            "position": 5,
+            "icon": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/telegram2.jpeg?raw=true",
+            "plataformName": "Telegram",
+            "color": "blue"
+        },
+        {
+            "id": 17,
+            "link": "8998798787",
+            "position": 6,
+            "icon": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/instagram.png?raw=true",
+            "plataformName": "Instagram",
+            "color": "pink"
+        },
+        {
+            "id": 18,
+            "link": "89789789798",
+            "position": 7,
+            "icon": "https:\/\/github.com\/miratkd\/MyLinkBack\/blob\/main\/app\/Assets\/snapchat.png?raw=true",
+            "plataformName": "Snapchat",
+            "color": "yellow"
+        }
+    ]
+}

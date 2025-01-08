@@ -227,4 +227,43 @@ describe('Main spec', () => {
     cy.get('@remove-card-modal').should('not.exist')
 
   })
+
+  it('test edit card', ()=>{
+    cy.viewport(1024, 768)
+    cy.intercept('GET', 'https://mylinkback-production.up.railway.app/api/plataforms/', {
+      statusCode: 200,
+      fixture: 'listPlataforms.json'
+    }).as('get plataforms')
+    cy.intercept('GET', 'https://mylinkback-production.up.railway.app/api/cards/16', {
+      statusCode: 200,
+      fixture: 'getCard.json'
+    }).as('get card')
+    window.localStorage.setItem('token', '123123')
+    cy.visit('card-16')
+    // espera a pagina carregar (exclusividade do nuxt)
+    cy.get('[id="nuxt-devtools-anchor"]')
+    cy.get('[data-test="add-link-title"]').should('be.visible')
+    cy.get('[data-test="card-title"]').should('have.text', 'Mira -Dev')
+    cy.get('[data-test="card-email"]').should('have.text', 'nuxt2@hotmail.com')
+    cy.get('[data-test="card-description"]').should('have.text', 'Desenvolvedor Full Stack | Vue.js | Nuxt.js | JavaScript | Django | Python | Laravel | PHP | Cypress | Tailwind')
+    cy.get('[data-test="link-button-19"]').as('telegram-button').should('be.visible')
+    cy.get('@telegram-button').should('contain.text', 'Telegram')
+    cy.get('[data-test="link-button-17"]').as('instagram-button').should('be.visible')
+    cy.get('@instagram-button').should('contain.text', 'Instagram')
+    cy.get('[data-test="link-button-18"]').as('snapchat-button').should('be.visible')
+    cy.get('@snapchat-button').should('contain.text', 'Snapchat')
+    cy.get('[data-test="link-button-20"]').should('not.exist')
+    cy.get('[data-test="create-link-modal"]').should('not.exist')
+    cy.get('[data-test="add-new-link"]').click()
+    cy.get('[data-test="create-link-modal"]').should('be.visible')
+    cy.get('[data-test="select-plataform-new"]').select(2)
+    cy.get('[data-test="new-input"]').type('test123123')
+    cy.intercept('POST', 'https://mylinkback-production.up.railway.app/api/addLink', {
+      statusCode: 200,
+      fixture: 'newLink.json'
+    }).as('add link')
+    cy.get('[data-test="create-link-button"]').click()
+    cy.get('[data-test="link-button-20"]').as('linkdin-button').should('be.visible')
+    cy.get('@linkdin-button').should('contain.text', 'Linkdin')
+  })
 })
