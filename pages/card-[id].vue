@@ -13,6 +13,7 @@
         </div>
         <div class="px-4 py-3">
             <CardLinksTab v-if="tab == 'links'" :removeLink="clickRemove" :addLink="addLink" :updateLinksOrder="updateLinksOrder" :updateLink="updateLink" :card="card!" :plataforms="plataforms"/>
+            <CardDetailsTab v-else :card="card!" :updateCard="updateCard"/>
         </div>
 
         <LoadingComponent v-if="isLoading"/>
@@ -90,6 +91,15 @@ function removeLink() {
         loadPage(resp)
     })
     
+}
+
+function updateCard(payload:Object) {
+    isLoading.value = true
+    service.updateCard(localStorage.getItem('token'), card.value?.id, payload).then(resp => {
+        resp.data.links = card.value?.links
+        card.value = resp.data
+        isLoading.value = false
+    })
 }
 </script>
 

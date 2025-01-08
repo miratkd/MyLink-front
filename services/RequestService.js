@@ -59,4 +59,8 @@ export default class RequestService {
     deleteLink (token, id) {
         return axios.delete(this.url + 'removeLink/' + id, this.config(token))
     }
+
+    updateCard (token, id, payload){
+        return axios.put(this.url + 'cards/' + id, payload, this.config(token))
+    }
 }
