@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="flex items-center bg-white px-4 py-5 justify-between">
-            <img class="w-7 lg:w-10" src="~/assets/logo-devlinks-small.svg" alt="">
-            <img @click="logout" class="w-11 text-purple-500 border border-solid rounded border-purple-700 px-2 py-1"
+            <img class="w-7 lg:w-10 cursor-pointer" src="~/assets/logo-devlinks-small.svg" alt="">
+            <img @click="logout" class="w-11 text-purple-500 border border-solid rounded border-purple-700 px-2 py-1 cursor-pointer"
                 src="~/assets/logout-icon.svg" alt="">
         </div>
         <div class="px-4 py-3">
