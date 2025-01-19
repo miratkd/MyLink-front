@@ -63,4 +63,8 @@ export default class RequestService {
     updateCard (token, id, payload){
         return axios.put(this.url + 'cards/' + id, payload, this.config(token))
     }
+
+    publicCard (id) {
+        return axios.get(this.url + 'card/' + id)
+    }
 }

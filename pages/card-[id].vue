@@ -8,10 +8,13 @@
                 <img @click="tab = 'card'" role="button" :class="{ 'bg-purple-100': tab == 'card' }"
                     src="~/assets/icon-profile-details-header.svg" class="  rounded px-4 py-1" alt="">
             </div>
-            <img class="w-11 text-purple-500 border border-solid rounded border-purple-700 px-2 py-1"
+            <NuxtLink :to="'/public-'+card?.id" target="_blank">
+                <img class="w-11 text-purple-500 border border-solid rounded border-purple-700 px-2 py-1 cursor-pointer"
                 src="~/assets/icon-preview-header.svg" alt="">
+            </NuxtLink>
+            
         </div>
-        <div class="px-4 py-3">
+        <div class="px-4 py-3 lg:min-h-screen">
             <CardLinksTab v-if="tab == 'links'" :removeLink="clickRemove" :addLink="addLink" :updateLinksOrder="updateLinksOrder" :updateLink="updateLink" :card="card!" :plataforms="plataforms"/>
             <CardDetailsTab v-else :card="card!" :updateCard="updateCard"/>
         </div>
