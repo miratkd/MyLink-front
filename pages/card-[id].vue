@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="flex items-center bg-white px-4 py-5 justify-between">
-            <img class="w-7 lg:w-10" src="~/assets/logo-devlinks-small.svg" alt="" @click="navigateTo('/dashboard')">
+            <img class="w-7 lg:w-10 cursor-pointer" src="~/assets/logo-devlinks-small.svg" alt="" @click="navigateTo('/dashboard')">
             <div class="flex gap-x-2">
                 <img @click="tab = 'links'" role="button" :class="{ 'bg-purple-100': tab == 'links' }"
                     src="~/assets/icon-links-header.svg" class="  rounded px-4 py-1" alt="">

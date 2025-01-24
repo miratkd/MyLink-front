@@ -14,7 +14,7 @@
                 <InputComponent type="email" data-test="email-input" @keydown="emailAlert=''" v-model="card.displayEmail!" :alert="emailAlert" icon="name" placeholder="Luan@gmail.com" />
                 <p data-test="email-label" class="body-s color-dark-gray mt-4">
                     Link para imagem do perfil</p>
-                <InputComponent data-test="image-input" v-model="props.card.imageUrl" icon="image" placeholder="https://media.licdn.com/dms/image/v2/D4D03AQHeXikmtY" />
+                <InputComponent data-test="image-input" v-model="imgLink" icon="image" placeholder="https://media.licdn.com/dms/image/v2/D4D03AQHeXikmtY" />
                 <p data-test="description-label" :class="{ 'text-red-500': descriptionAlert }"
                     class="body-s color-dark-gray mt-4">Descrição</p>
                 <TextAreaComponent data-test="description-input" @keydown="descriptionAlert=''" :alert="descriptionAlert" v-model="props.card.description" icon="password"
@@ -45,9 +45,11 @@ const componentLinks = ref<Link[]>([])
 let titleAlert = ref('')
 let emailAlert = ref('')
 let descriptionAlert = ref('')
+let imgLink = ref('')
 
 onMounted(() => {
     if (props.card) componentLinks.value = props.card.links!
+    if (props.card.imageUrl != "https://th.bing.com/th/id/R.fa9644da6ad44f8c0ec711b9f9108a43?rik=mtnwYzeG7DURFg&pid=ImgRaw&r=0") imgLink.value = props.card.imageUrl
 })
 function saveClick() {
     if (!validateEmail(props.card.displayEmail)) emailAlert.value = 'insira um email valido'
@@ -60,7 +62,7 @@ function saveClick() {
         "title": props.card.title,
         "mainColor": props.card.mainColor,
         "description": props.card.description,
-        "imageUrl": props.card.imageUrl,
+        "imageUrl": imgLink.value,
         "email": props.card.displayEmail
     }
     props.updateCard(payload)
